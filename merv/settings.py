@@ -134,7 +134,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-LOGIN_REDIRECT_URL = '/' # It means home view
+LOGIN_REDIRECT_URL = '/user_home' # It means home view
 
 STATIC_URL = '/static/'
 

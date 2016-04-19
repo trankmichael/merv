@@ -22,14 +22,20 @@ from accounts.views import UserRegistrationView
 # from log.views import signup
 from registration.views import RegistrationView
 from . import views
+from django.conf.urls import (handler400, handler403, handler404, handler500)
 
 admin.autodiscover()
 
 
+handler400 = '.views.bad_request'
+handler403 = '.views.permission_denied'
+handler404 = '.views.page_not_found'
+handler500 = '.views.server_error'
+
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^user_home/$', views.user_home, name='user_home'),
     url(r'^admin/', admin.site.urls),
-    #url(r'^login/$', auth_views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}),
     url(r'^signup/$', UserRegistrationView, {'template_name': 'signup.html', 'authentication_form': UserRegistrationForm}),
 	#url(r'^logout/$', auth_views.logout, {'next_page': '/login'}),  
     url(r'^accounts/',include('registration.backends.default.urls')),

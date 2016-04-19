@@ -11,6 +11,9 @@ from .models import User
 class UserRegistrationView(RegistrationView):
     form_class = UserRegistrationForm
 
+    def get_success_url(self, request, user):
+        return "/user_home"
+
     def register(self, request, form):
 
         site = get_current_site(request)
