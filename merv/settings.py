@@ -58,6 +58,18 @@ REST_FRAMEWORK = {
     ]
 }
 
+SWAGGER_SETTINGS = {
+    "exclude_namespaces": [], # List URL namespaces to ignore
+    "api_path": "/api/", # the path to API (it could not be a root level)
+    "enabled_methods" : [ # method to enable in Swagger UI
+        'get',
+        'post',
+    ],
+    "api_key": '', # An API key
+    "is_authentcated": False, # Set to True to enforce user authentication,
+    "is_superuser": False, # Set to True to enforce admin only access
+}
+
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
