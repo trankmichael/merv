@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     #'django.core.urlresolvers', <<  ------ breaks migrations
-
+    'rest_framework_swagger',
     # our apps
     'accounts',
     'tasks',
