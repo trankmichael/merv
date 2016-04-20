@@ -8,7 +8,9 @@ from .models import Task
 class TaskCreate(CreateView):
 	model = Task
 	template_name = 'create.html'
-	fields = ['attribute_1','attribute_2','attribute_3','attribute_4','attribute_5','attribute_6','attribute_7','attribute_8','attribute_9','attribute_10']
+	fields = ['collaborative','strenght','transportation','outdoor','language'] 
+	
+	#,'attribute_6','attribute_7','attribute_8','attribute_9','attribute_10']
 	
 	def form_valid(self, form):
 		user = self.request.user
