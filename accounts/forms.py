@@ -9,10 +9,11 @@ from django import forms
 class UserRegistrationForm(RegistrationForm):
     first_name = forms.CharField(max_length=30, label=_("First name"))
     last_name = forms.CharField(max_length=30, label=_("Last name"))
+    attribute_1 = forms.CharField(max_length=30, label=_("Attribute 1"))
 
     class Meta:
         model = User
-        fields = ("email", "first_name", "last_name")
+        fields = ("email", "first_name", "last_name", "attribute_1")
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label="Username", max_length=30, 

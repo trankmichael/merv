@@ -42,12 +42,13 @@ class User(AbstractBaseUser, PermissionsMixin):
                                           'Letters, numbers and @/./+/-/_ characters'))
     first_name = models.CharField(_('first name'), max_length=30, blank=False, null=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=False, null=True)
+    attribute_1 = models.CharField(_('attribute 1'), max_length=30, blank=False, null=True)
     is_staff = models.BooleanField(_('staff status'), default=False)
     is_active = models.BooleanField(_('active'), default=False)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'attribute_1']
 
     objects = UserManager()
 

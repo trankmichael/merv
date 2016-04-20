@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^user_home/$', views.user_home, name='user_home'),
     url(r'^admin/', admin.site.urls),
 	#url(r'^logout/$', auth_views.logout, {'next_page': '/login'}),  
-    url(r'^accounts/',include('registration.backends.default.urls')),
+    url(r'^accounts/',include('accounts.urls'), name='accounts'),
     url(r'^tasks/', include('tasks.urls')),
     # url(r'^accounts/register/$', Re, {'template_name': 'register.html'}, name='registration_register'),
     # url(r'^accounts/login/$', views.login, {'template_name': 'login.html'}, name='registration_login'),]
