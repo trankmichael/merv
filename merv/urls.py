@@ -39,6 +39,7 @@ urlpatterns = [
 	#url(r'^logout/$', auth_views.logout, {'next_page': '/login'}),  
     url(r'^accounts/',include('accounts.urls'), name='accounts'),
     url(r'^tasks/', include('tasks.urls')),
+    url(r'^docs/', include('rest_framework_swagger.urls')),
     # url(r'^accounts/register/$', Re, {'template_name': 'register.html'}, name='registration_register'),
     # url(r'^accounts/login/$', views.login, {'template_name': 'login.html'}, name='registration_login'),]
 ]
