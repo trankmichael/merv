@@ -9,7 +9,7 @@ from .models import Task
 class TaskCreate(CreateView):
 	model = Task
 	template_name = 'create.html'
-	fields = ['collaborative','strenght','transportation','outdoor','language'] 
+	fields = ['collaborative','strength','transportation','outdoor','language'] 
 	
 	def form_valid(self, form):
 		user = self.request.user
@@ -19,8 +19,8 @@ class TaskCreate(CreateView):
 
 class TaskDetail(DetailView):
 	model = Task
-	fields = ['collaborative','strenght','transportation','outdoor','language'] 
+	fields = ['collaborative','strength','transportation','outdoor','language'] 
 
 class TaskUpdate(UpdateView):
 	model = Task
-	fields = ['collaborative','strenght','transportation','outdoor','language'] 
+	fields = ['collaborative','strength','transportation','outdoor','language'] 
