@@ -31,4 +31,4 @@ class Task(models.Model):
 	attribute_10 = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
 
 	def get_absolute_url(self):
-		return reverse('task', kwargs={'pk': self.pk})
+		return reverse('task-detail', kwargs={'pk': self.pk})

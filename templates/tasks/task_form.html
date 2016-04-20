@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+    {% block content %}
+        <header>
+            <h1>Task: {{ task.task_name }}</h1>
+        </header>
+        
+        <div>
+            <span>Last Updated</span>
+            <p>{{ task.updated }}</p>
+        </div>
+        <div>
+            <p>Attribute 1: {{ task.attribute_1 }}</p>
+        </div>
+        <div>
+            <span>Attribute 2</span>
+            <p>{{ task.attribute_2 }}</p>
+        </div>
+        <div>
+            <span>Attribute 3</span>
+            <p>{{ task.attribute_3 }}</p>
+        </div>
+    {% endblock %}
