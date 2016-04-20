@@ -6,6 +6,16 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 
+class IntegerRangeField(models.IntegerField):
+    def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
+        self.min_value, self.max_value = min_value, max_value
+        models.IntegerField.__init__(self, verbose_name, name, **kwargs)
+    def formfield(self, **kwargs):
+        defaults = {'min_value': self.min_value, 'max_value':self.max_value}
+        defaults.update(kwargs)
+        return super(IntegerRangeField, self).formfield(**defaults)
+
+
 class UserManager(BaseUserManager):
 
     def _create_user(self, email, password, first_name, last_name,
@@ -42,13 +52,23 @@ class User(AbstractBaseUser, PermissionsMixin):
                                           'Letters, numbers and @/./+/-/_ characters'))
     first_name = models.CharField(_('first name'), max_length=30, blank=False, null=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=False, null=True)
-    attribute_1 = models.CharField(_('attribute 1'), max_length=30, blank=False, null=True)
+
+    #collaborative = models.CharField(_('collaborative'), max_length=30, blank=False, null=True)
+
+    collaborative = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
+    strength = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
+    transportation = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
+    outdoor = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
+    language = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
+
+
     is_staff = models.BooleanField(_('staff status'), default=False)
     is_active = models.BooleanField(_('active'), default=False)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'attribute_1']
+    #REQUIRED_FIELDS = ['first_name', 'last_name', 'collaborative']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'collaborative','strength', 'transportation', 'outdoor','language']
 
     objects = UserManager()
 

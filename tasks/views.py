@@ -16,6 +16,7 @@ class TaskCreate(CreateView):
 	model = Task
 	template_name = 'create.html'
 	fields = ['task_name', 'collaborative','strength','transportation','outdoor','language'] 
+
 	
 	def form_valid(self, form):
 		user = self.request.user
@@ -85,3 +86,8 @@ def task_detail(request, pk):
     elif request.method == 'DELETE':
         task.delete()
         return HttpResponse(status=204)
+	fields = ['task_name', 'collaborative','strength','transportation','outdoor','language'] 
+
+class TaskUpdate(UpdateView):
+	model = Task
+	fields = ['task_name', 'collaborative','strength','transportation','outdoor','language'] 

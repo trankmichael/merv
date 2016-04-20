@@ -25,5 +25,7 @@ class Task(models.Model):
 	outdoor = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
 	language = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
 
+
+
 	def get_absolute_url(self):
 		return reverse('task-detail', kwargs={'pk': self.pk})
