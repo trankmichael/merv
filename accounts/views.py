@@ -6,6 +6,8 @@ from registration import signals
 
 from .forms import UserRegistrationForm
 from .models import User
+from rest_framework import generics
+from accounts.serializers import UserSerializer
 
 
 class UserRegistrationView(RegistrationView):
@@ -34,3 +36,14 @@ class UserRegistrationView(RegistrationView):
                                      user=new_user,
                                      request=request)
         return new_user
+
+
+
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
