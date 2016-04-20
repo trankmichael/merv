@@ -20,7 +20,7 @@ class Task(models.Model):
 	updated = models.DateTimeField(auto_now_add = False, auto_now = True)
 
 	collaborative = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
-	strenght = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
+	strength = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
 	transportation = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
 	outdoor = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
 	language = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
