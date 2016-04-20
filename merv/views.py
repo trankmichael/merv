@@ -2,11 +2,11 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 
-@login_required(login_url="accounts/login")
+@login_required(login_url="accounts/login", redirect_field_name=None)
 def user_home(request):
 	return render(request, "user_home.html")
 
-
+@login_required(login_url="accounts/login", redirect_field_name=None)
 def home(request):
 	return render(request, "home.html")
 

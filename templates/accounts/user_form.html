@@ -23,10 +23,10 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Register Task</h3>
+                    <h3 class="panel-title">Update Preferences</h3>
                 </div>
                 <div class="panel-body">
-                    <form method="post" action="/tasks/create/">
+                    <form method="post" action="/accounts/preferences/">
 {% csrf_token %}
                         {{ form.as_p }}
                         <input type="submit" value="Save" />
@@ -47,7 +47,7 @@
                                 <input class="btn btn-success btn-sm" type="submit" value="login" />
                             </center>
                         </p> -->
-                        <input type="hidden" name="next" value="/home/" />
+                        <input type="hidden" name="next" value="{{ next }}" />
                     </form>
                 </div>
             </div>
