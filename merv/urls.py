@@ -23,6 +23,7 @@ from accounts.views import UserRegistrationView
 from registration.views import RegistrationView
 from . import views
 from django.conf.urls import (handler400, handler403, handler404, handler500)
+from rest_framework import routers, serializers, viewsets
 
 admin.autodiscover()
 
