@@ -3,6 +3,7 @@ from .models import Task
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.detail import DetailView
 from .models import Task 
 
 class TaskCreate(CreateView):
@@ -10,16 +11,16 @@ class TaskCreate(CreateView):
 	template_name = 'create.html'
 	fields = ['collaborative','strenght','transportation','outdoor','language'] 
 	
-	#,'attribute_6','attribute_7','attribute_8','attribute_9','attribute_10']
-	
 	def form_valid(self, form):
 		user = self.request.user
 		form.instance.user = user
 		return super(TaskCreate, self).form_valid(form)
 
 
+class TaskDetail(DetailView):
+	model = Task
+	fields = ['collaborative','strenght','transportation','outdoor','language'] 
 
 class TaskUpdate(UpdateView):
-    model = Task
-    fields = ['attribute_1','attribute_2','attribute_3','attribute_4','attribute_5',
-		'attribute_6','attribute_7','attribute_8','attribute_9','attribute_10']
+	model = Task
+	fields = ['collaborative','strenght','transportation','outdoor','language'] 

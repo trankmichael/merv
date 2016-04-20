@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 
 class IntegerRangeField(models.IntegerField):
@@ -28,6 +29,7 @@ class Task(models.Model):
 	#attribute_8 = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
 	#attribute_9 = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
 	#attribute_10 = IntegerRangeField(min_value=1, max_value=5, null=True, blank=True)
+	task_name = models.CharField(_('task name'), max_length=30, blank=False, null=True)
 
 	def get_absolute_url(self):
-		return reverse('task', kwargs={'pk': self.pk})
+		return reverse('task-detail', kwargs={'pk': self.pk})
