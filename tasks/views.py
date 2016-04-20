@@ -10,7 +10,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
-
+from rest_framework import generics
 
 class TaskCreate(CreateView):
 	model = Task
@@ -32,62 +32,11 @@ class TaskUpdate(UpdateView):
 	model = Task
 	fields = ['task_name', 'collaborative','strength','transportation','outdoor','language'] 
 
-class JSONResponse(HttpResponse):
-    """
-    An HttpResponse that renders its content into JSON.
-    """
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
+class TaskList(generics.ListCreateAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
 
 
-@csrf_exempt
-def task_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        tasks = Task.objects.all()
-        serializer = TaskSerializer(tasks, many=True)
-        return JSONResponse(serializer.data)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = TaskSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JSONResponse(serializer.data, status=201)
-        return JSONResponse(serializer.errors, status=400)
-
-
-@csrf_exempt
-def task_detail(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        task = Task.objects.get(pk=pk)
-    except Task.DoesNotExist:
-        return HttpResponse(status=404)
-
-    if request.method == 'GET':
-        serializer = TaskSerializer(task)
-        return JSONResponse(serializer.data)
-
-    elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = TaskSerializer(task, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JSONResponse(serializer.data)
-        return JSONResponse(serializer.errors, status=400)
-
-    elif request.method == 'DELETE':
-        task.delete()
-        return HttpResponse(status=204)
-	fields = ['task_name', 'collaborative','strength','transportation','outdoor','language'] 
-
-class TaskUpdate(UpdateView):
-	model = Task
-	fields = ['task_name', 'collaborative','strength','transportation','outdoor','language'] 
+class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
