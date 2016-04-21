@@ -23,11 +23,6 @@ class TaskCreate(CreateView):
 		form.instance.user = user
 		return super(TaskCreate, self).form_valid(form)
 
-
-class TaskDetail(DetailView):
-	model = Task
-	fields = ['task_name', 'collaborative','strength','transportation','outdoor','language'] 
-
 class TaskUpdate(UpdateView):
 	model = Task
 	fields = ['task_name', 'collaborative','strength','transportation','outdoor','language'] 
