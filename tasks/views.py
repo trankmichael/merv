@@ -15,7 +15,13 @@ from scipy import spatial
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import json
-import re 
+
+
+
+from operator import itemgetter
+
+
+
 
 class TaskCreate(CreateView):
 	model = Task
@@ -50,19 +56,24 @@ class TaskList(APIView):
     def get(self, request, format=None):
         tasks = Task.objects.all()
         user = self.request.user
-        returned_dict = []
+        task_list = []
+        returned_list = []
         user_vector = [user.collaborative, user.strength, user.transportation, user.outdoor, user.language]
         for obj in tasks:
 	        task_vector = [obj.collaborative, obj.strength, obj.transportation, obj.outdoor, obj.language]
 	        score = 1 - spatial.distance.cosine(task_vector, user_vector)
-	        returned_dict.append((str(obj.pk), str(score)))
-        serializer = TaskSerializer(returned_dict, many=True)
+	        task_list.append((obj, score))
+        task_list.sort(key=itemgetter(1), reverse = True)
+        for item in task_list:
+        	returned_list.append(item[0])
+        print task_list
+        serializer = TaskSerializer(returned_list, many=True)
 
-        y = json.dumps(returned_dict)
-        y = y.replace('[', '{')
-        y = y.replace(']', '}')
-        y = y.replace('\", ', '\":')
-        print y
+        # y = json.dumps(task_list)
+        # y = y.replace('[', '{')
+        # y = y.replace(']', '}')
+        # y = y.replace('\", ', '\":')
+        # print y
         return Response(serializer.data)
 
     def post(self, request, format=None):

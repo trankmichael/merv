@@ -47,9 +47,7 @@ INSTALLED_APPS = [
     'tasks',
 
     # third party apps
-    'registration',
-    'recommends',
-    'recommends.storages.djangoorm'
+    'registration'
 ]
 
 SITE_ID = 1
