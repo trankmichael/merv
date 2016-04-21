@@ -47,7 +47,8 @@ INSTALLED_APPS = [
 
     # third party apps
     'registration',
-
+    'recommends',
+    'recommends.storages.djangoorm'
 ]
 
 REST_FRAMEWORK = {
