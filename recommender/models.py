@@ -9,6 +9,8 @@ class Rating(models.Model):
     """A Vote on a Product"""
     user = models.ForeignKey(User, related_name='ratings')
     task = models.ForeignKey(Task)
+    # task_pk = models.ForeignKey(Task)
+    task_pk = models.IntegerField()
     score = models.FloatField()
 
     def __str__(self):
