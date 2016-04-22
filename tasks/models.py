@@ -29,6 +29,9 @@ class Task(models.Model):
 	def get_absolute_url(self):
 		return reverse('task-detail', kwargs={'pk': self.pk})
 
+	def __unicode__(self):
+	   return self.task_name 
+
 class Scores(models.Model):
 	key = models.FloatField()
 	score = models.FloatField()
