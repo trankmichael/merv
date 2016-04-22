@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # our apps
     'accounts',
     'tasks',
+    'recommender',
 
     # third party apps
     'registration'

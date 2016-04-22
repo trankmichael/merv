@@ -5,7 +5,7 @@ from accounts.models import User
 from tasks.models import Task
 
 # Create your models here.
-class Ratings(models.Model)
+class Ratings(models.Model):
     """A Vote on a Product"""
     user = models.ForeignKey(User, related_name='ratings')
     task = models.ForeignKey(Task)

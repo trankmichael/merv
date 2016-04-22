@@ -5,4 +5,4 @@ from recommender.models import Ratings
 # Register your models here.
 admin.site.register(Task)
 admin.site.register(User)
-admi.site.register(Ratings)
+admin.site.register(Ratings)
