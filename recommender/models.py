@@ -26,4 +26,3 @@ class CosineTaskSimilarity(models.Model):
     user = models.ForeignKey(User, related_name='cosine')
     task = models.IntegerField()
     similarity = models.FloatField()
-
