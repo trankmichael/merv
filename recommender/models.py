@@ -14,11 +14,10 @@ class Rating(models.Model):
     score = models.FloatField()
 
     def __str__(self):
-        return "Vote"
+        return "Rating"
 
 class Recommendation(models.Model):
-	user = models.OneToOneField(
-		User,
-		on_delete=models.CASCADE,
-		primary_key=True,
-	)
+	user = models.ForeignKey(User, related_name='recommended')
+	task = models.ForeignKey(Task)
+	task_pk = models.IntegerField()
+	predicted_score = models.FloatField()
