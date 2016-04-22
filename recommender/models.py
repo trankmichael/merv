@@ -21,3 +21,9 @@ class Recommendation(models.Model):
 	task = models.ForeignKey(Task)
 	task_pk = models.IntegerField()
 	predicted_score = models.FloatField()
+
+class CosineTaskSimilarity(models.Model):
+    user = models.ForeignKey(User, related_name='cosine')
+    task = models.IntegerField()
+    similarity = models.FloatField()
+
