@@ -2,7 +2,6 @@ amqp==1.4.9
 anyjson==0.3.3
 billiard==3.3.0.23
 celery==3.1.23
-csc-pysparse==1.1.1.4
 csc-utils==0.6.7
 decorator==4.0.9
 Divisi2==2.2.5
