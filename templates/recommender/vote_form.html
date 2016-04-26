@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+    {% block content %}
+        <header>
+            <h1>Task: {{ task.task_name }}</h1>
+        </header>
+        
+        <div>
+            <span>Last Updated</span>
+            <p>{{ task.updated }}</p>
+        </div>
+        <div>
+            <p>collaborative: {{ task.collaborative }}</p>
+        </div>
+        <div>
+            <span>strength 2</span>
+            <p>{{ task.strength }}</p>
+        </div>
+        <div>
+            <span>transportation</span>
+            <p>{{ task.transportation }}</p>
+        </div>
+        <div>
+            <span>outdoor</span>
+            <p>{{ task.outdoor }}</p>
+        </div>
+        <div>
+            <span>language</span>
+            <p>{{ task.language}}</p>
+        </div>
+    {% endblock %}

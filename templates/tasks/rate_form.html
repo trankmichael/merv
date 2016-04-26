@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+    {% block content %}
+        <header>
+            <h1>Task: {{ task.task_name }}</h1>
+        </header>
+        
+        <div>
+            <span>Last Updated</span>
+            <p>{{ vote.score }}</p>
+        </div>
+    {% endblock %}

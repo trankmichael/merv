@@ -15,7 +15,7 @@ from scipy import spatial
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import json
-
+from recommender.models import CosineTaskSimilarity
 
 
 from operator import itemgetter
@@ -60,13 +60,14 @@ class TaskList(APIView):
         returned_list = []
         user_vector = [user.collaborative, user.strength, user.transportation, user.outdoor, user.language]
         for obj in tasks:
-	        task_vector = [obj.collaborative, obj.strength, obj.transportation, obj.outdoor, obj.language]
-	        score = 1 - spatial.distance.cosine(task_vector, user_vector)
-	        task_list.append((obj, score))
+            task_vector = [obj.collaborative, obj.strength, obj.transportation, obj.outdoor, obj.language]
+            score = 1 - spatial.distance.cosine(task_vector, user_vector)
+            task_list.append((obj, score))
+            cosine_similarity = CosineTaskSimilarity(user=user, task=obj.pk, similarity=score)
+            cosine_similarity.save()
         task_list.sort(key=itemgetter(1), reverse = True)
         for item in task_list:
         	returned_list.append(item[0])
-        print task_list
         serializer = TaskSerializer(returned_list, many=True)
 
         # y = json.dumps(task_list)

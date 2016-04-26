@@ -1,15 +1,32 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from accounts.models import User 
+from tasks.models import Task
 
 # Create your models here.
-@python_2_unicode_compatible
-class Vote(models.Model):
+class Rating(models.Model):
     """A Vote on a Product"""
-    user = models.ForeignKey(User, related_name='votes')
-    task = models.ForeignKey(Product)
+    user = models.ForeignKey(User, related_name='ratings')
+    task = models.ForeignKey(Task)
+    # task_pk = models.ForeignKey(Task)
+    task_pk = models.IntegerField()
     score = models.FloatField()
 
     def __str__(self):
-        return "Vote"
+        return "Rating"
+
+class Recommendation(models.Model):
+	user = models.ForeignKey(User, related_name='recommended')
+	task = models.ForeignKey(Task)
+	task_pk = models.IntegerField()
+	predicted_score = models.FloatField()
+
+class CosineTaskSimilarity(models.Model):
+    user = models.ForeignKey(User, related_name='cosine')
+    task = models.IntegerField()
+    similarity = models.FloatField()
+
+class RecommenderFile(models.Model):
+    timestamp = models.DateTimeField(auto_now_add = True, auto_now = False)
+    ratings_csv = models.FileField(upload_to='recommender/%Y/%m/%d/')

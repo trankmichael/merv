@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from .views import TaskCreate, TaskUpdate, TaskList, TaskDetail
 from tasks import views
 from rest_framework.urlpatterns import format_suffix_patterns
-
+from recommender.views import RatingCreateUpdate
 
 urlpatterns = [
     url(r'^create/$', TaskCreate.as_view(), name='task-add'),
@@ -10,6 +10,7 @@ urlpatterns = [
     # url(r'^tasklist/$', views.task_list),
     url(r'^tasklist/$', TaskList.as_view()),
     url(r'^taskdetail/(?P<pk>[0-9]+)/$', TaskDetail.as_view()),
+    url(r'^rate/(?P<pk>[0-9]+)/$', RatingCreateUpdate.as_view(success_url='/')),
 ]
 
 
