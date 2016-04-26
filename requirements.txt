@@ -16,6 +16,7 @@ kombu==3.0.35
 networkx==1.11
 numpy==1.9.2
 python-dateutil==2.5.2
+python-recsys==0.2
 pytz==2016.3
 PyYAML==3.11
 scikits.learn==0.8.1
@@ -23,3 +24,5 @@ scipy==0.17.0
 six==1.10.0
 whitenoise==3.0
 csc-pyparse==1.1.1.4
+
+-e .
