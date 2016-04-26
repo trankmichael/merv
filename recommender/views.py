@@ -38,7 +38,7 @@ def ratings_list(request):
     if request.method == 'POST':
         form = RatingUpload(request.POST, request.FILES)
         if form.is_valid():
-            newratings = RecommenderFile(docfile = request.FILES['docfile'])
+            newratings = RecommenderFile(ratings_csv = request.FILES['ratings_csv'])
             newratings.save()
 
             # Redirect to the document list after POST
@@ -55,3 +55,33 @@ def ratings_list(request):
         {'ratings': ratings, 'form': form},
         context_instance=RequestContext(request)
     )
+
+# class CollaborativeList(APIView):
+#     """
+#     List all snippets, or create a new snippet.
+#     """
+#     def get(self, request, format=None):
+#         tasks = Task.objects.all()
+#         user = self.request.user
+#         task_list = []
+#         returned_list = []
+#         user_vector = [user.collaborative, user.strength, user.transportation, user.outdoor, user.language]
+#         for obj in tasks:
+#             task_vector = [obj.collaborative, obj.strength, obj.transportation, obj.outdoor, obj.language]
+#             score = 1 - spatial.distance.cosine(task_vector, user_vector)
+#             task_list.append((obj, score))
+#             cosine_similarity = CosineTaskSimilarity(user=user, task=obj.pk, similarity=score)
+#             cosine_similarity.save()
+#         task_list.sort(key=itemgetter(1), reverse = True)
+#         for item in task_list:
+#             returned_list.append(item[0])
+#         serializer = TaskSerializer(returned_list, many=True)
+
+#         return Response(serializer.data)
+
+#     def post(self, request, format=None):
+#         serializer = TaskSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
