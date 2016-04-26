@@ -26,3 +26,7 @@ class CosineTaskSimilarity(models.Model):
     user = models.ForeignKey(User, related_name='cosine')
     task = models.IntegerField()
     similarity = models.FloatField()
+
+class RecommenderFile(models.Model):
+    timestamp = models.DateTimeField(auto_now_add = True, auto_now = False)
+    ratings_csv = models.FileField(upload_to='recommender/%Y/%m/%d/')

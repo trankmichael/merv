@@ -14,6 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf import settings
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 # from log.forms import LoginForm
@@ -39,8 +42,11 @@ urlpatterns = [
 	#url(r'^logout/$', auth_views.logout, {'next_page': '/login'}),  
     url(r'^accounts/',include('accounts.urls'), name='accounts'),
     url(r'^tasks/', include('tasks.urls')),
+    url(r'^recommender/',include('recommender.urls'), name='recommender'),
     url(r'^api/', include('api.urls')),
     url(r'^docs/', include('rest_framework_swagger.urls')),
     # url(r'^accounts/register/$', Re, {'template_name': 'register.html'}, name='registration_register'),
     # url(r'^accounts/login/$', views.login, {'template_name': 'login.html'}, name='registration_login'),]
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

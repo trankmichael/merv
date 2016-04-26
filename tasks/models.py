@@ -32,6 +32,7 @@ class Task(models.Model):
 	def __unicode__(self):
 	   return self.task_name 
 
+
 class Scores(models.Model):
 	key = models.FloatField()
 	score = models.FloatField()
