@@ -1,5 +1,5 @@
 numpy==1.9.2
-scikit.learn
+scikit-learn
 scipy==0.17.0
 amqp==1.4.9
 anyjson==0.3.3
