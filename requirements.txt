@@ -1,12 +1,14 @@
 
-
+numpy==1.9.2
+scikit-learn==0.15.0b1
+scipy==0.17.0
 amqp==1.4.9
 anyjson==0.3.3
 billiard==3.3.0.23
 celery==3.1.23
 csc-utils==0.6.7
 decorator==4.0.9
-
+Divisi2==2.2.5
 dj-database-url==0.4.1
 Django==1.9.5
 django-recommends==0.3.1
@@ -21,6 +23,6 @@ pytz==2016.3
 PyYAML==3.11
 six==1.10.0
 whitenoise==3.0
-
+csc-pyparse==1.1.1.4
 
 ./python-recsys-master
