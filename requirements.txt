@@ -25,4 +25,4 @@ six==1.10.0
 whitenoise==3.0
 csc-pyparse==1.1.1.4
 
--e ./python-recsys-master/.
+-e ./python-recsys-master/
