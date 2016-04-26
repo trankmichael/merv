@@ -23,3 +23,4 @@ scikits.learn==0.8.1
 scipy==0.17.0
 six==1.10.0
 whitenoise==3.0
+csc-pyparse==1.1.1.4
