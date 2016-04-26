@@ -21,6 +21,6 @@ pytz==2016.3
 PyYAML==3.11
 six==1.10.0
 whitenoise==3.0
-csc-pyparse==1.1.1.4
+
 
 ./python-recsys-master
