@@ -16,28 +16,26 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 import json
 from recommender.models import CosineTaskSimilarity
-
-
 from operator import itemgetter
 
 
 
 
 class TaskCreate(CreateView):
-	model = Task
-	template_name = 'create.html'
-	fields = ['task_name', 'collaborative','strength','transportation','outdoor','language'] 
+    model = Task
+    template_name = 'create.html'
+    fields = ['task_name', 'collaborative','strength','transportation','outdoor','language'] 
 
-	
-	def form_valid(self, form):
-		print('hello')
-		user = self.request.user
-		form.instance.user = user
-		return super(TaskCreate, self).form_valid(form)
+    
+    def form_valid(self, form):
+        print('hello')
+        user = self.request.user
+        form.instance.user = user
+        return super(TaskCreate, self).form_valid(form)
 
 class TaskUpdate(UpdateView):
-	model = Task
-	fields = ['task_name', 'collaborative','strength','transportation','outdoor','language'] 
+    model = Task
+    fields = ['task_name', 'collaborative','strength','transportation','outdoor','language'] 
 
 # class TaskList(generics.ListCreateAPIView):
 #     queryset = Task.objects.all()
@@ -54,12 +52,15 @@ class TaskList(APIView):
     List all snippets, or create a new snippet.
     """
     def get(self, request, format=None):
+        import cProfile, pstats, StringIO
+        pr = cProfile.Profile()
+        pr.enable()
         tasks = Task.objects.all()
         user = self.request.user
         task_list = []
         returned_list = []
         user_vector = [user.collaborative, user.strength, user.transportation, user.outdoor, user.language]
-        for obj in tasks:
+        for obj in tasks[:20]:
             task_vector = [obj.collaborative, obj.strength, obj.transportation, obj.outdoor, obj.language]
             score = 1 - spatial.distance.cosine(task_vector, user_vector)
             task_list.append((obj, score))
@@ -67,14 +68,16 @@ class TaskList(APIView):
             cosine_similarity.save()
         task_list.sort(key=itemgetter(1), reverse = True)
         for item in task_list:
-        	returned_list.append(item[0])
+            returned_list.append(item[0])
         serializer = TaskSerializer(returned_list, many=True)
 
-        # y = json.dumps(task_list)
-        # y = y.replace('[', '{')
-        # y = y.replace(']', '}')
-        # y = y.replace('\", ', '\":')
-        # print y
+        pr.disable()
+        s = StringIO.StringIO()
+        sortby = 'cumulative'
+        ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+        ps.print_stats()
+        print s.getvalue()
+
         return Response(serializer.data)
 
     def post(self, request, format=None):
@@ -114,3 +117,34 @@ class TaskDetail(APIView):
         task = self.get_object(pk)
         task.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+def generate(request):
+    data = []
+    for i in range(0,1000):
+        data.append(i)
+        data.append('a')
+        for j in range(0,5):
+            x = random.randint(1, 100)
+            if x <= 5:
+                data.append('0')
+            elif x > 5 and x <= 10:
+                data.append('1')
+            elif x > 10 and x <= 15:
+                data.append('2')
+            elif x > 20 and x <= 25:
+                data.append('3')
+            elif x > 25 and x <= 30:
+                data.append('4')
+            else:
+                data.append('5')
+        task = Task(
+            id=data[0],
+            task_name=data[1],
+            collaborative=data[2],
+            strength=data[3],
+            transportation=data[4],
+            outdoor=data[5],
+            language=data[6])
+        task.save()
+        del data[:]
+    return ('uploaded')
