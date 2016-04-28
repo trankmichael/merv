@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     #'django.core.urlresolvers', <<  ------ breaks migrations
     'rest_framework_swagger',
+    'django_extensions',
     # our apps
     'accounts',
     'tasks',
@@ -53,6 +54,11 @@ INSTALLED_APPS = [
     # third party apps
     'registration'
 ]
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+}
 
 SITE_ID = 1
 
