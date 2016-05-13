@@ -54,4 +54,6 @@ Tasks, Recommender, API, merv
    * first_name: CharField storing user's first name
    * last_name: CharField storing the user's last name
    * password: PBKDF2 encrypted password
-  
+  * ***Views***
+   * userlist : generate a list of all users
+   * UserDetail : get details of the current user
