@@ -57,3 +57,9 @@ Tasks, Recommender, API, merv
   * ***Views***
    * userlist : generate a list of all users
    * UserDetail : get details of the current user
+
+## API Endpoints
+ * tasklist - returns the list of recommend tasks for the current user
+ * taskdetail - returns the details of a specific task
+ * userlist - returns a list of users
+ * userdetail - returns the details of a user given their primary key
