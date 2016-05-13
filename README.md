@@ -63,3 +63,6 @@ Tasks, Recommender, API, merv
  * taskdetail - returns the details of a specific task
  * userlist - returns a list of users
  * userdetail - returns the details of a user given their primary key
+
+##LocalHost Deployment
+
