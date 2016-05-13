@@ -5,7 +5,7 @@ Tasks, Recommender, API, merv
 
 **Tasks:** handles task creation, storage, updating, and deleting
 
-  * **Models** 
+  * ***Models*** 
    * Task
      * id : Task ID
      * collaborative : team collaboration skills necessary
@@ -16,18 +16,18 @@ Tasks, Recommender, API, merv
      * task_description : description of task
      * timestamp : datetime of task creation
      * updated : datetime of last task update
-  * **Views**:
+  * ***Views***:
     * TaskCreate: view for creating a task
     * TaskUpdate: view for updating a task
     * TaskList: generate task recommendations for a User
     * TaskDetail: API endpoint for task CRUD
     * Generate: generate and populate the Task Model with randomized test values 
-  * **URLS**: /tasks/
+  * ***URLS***: /tasks/
     * create, tasklist, taskdetail/\<pk\>, /\<pk\>, rate/\<pk\>
     * <pk> : the primary key of each task
    
 **Recommender:** handles user-task ratings, and recommendations
- * **Models**
+ * ***Models***
   * Rating
     * id: Rating ID
     * task: foreignkey corresponding to a task
