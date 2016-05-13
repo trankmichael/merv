@@ -65,4 +65,30 @@ Tasks, Recommender, API, merv
  * userdetail - returns the details of a user given their primary key
 
 ##LocalHost Deployment
-
+ * remove the virtual environment - and create a new one 
+``` 
+rm -rf env 
+virtual env
+```
+ * activate the virtualenv
+```
+source env/bin/activate
+```
+ * install django and other requirements [some requirements may not be installed using pip / resolve these seperate to match requirements.txt]
+```
+pip install django
+pip install -r requirements.txt
+```
+* delete sqllite database
+* make fresh database
+```
+python manage.py schemamigration merv --initial
+```
+* make the django migrations
+```
+python manage.py migrate merv
+```
+* run the django application!
+```
+python manage.py runserver
+```
