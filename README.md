@@ -12,6 +12,7 @@ Tasks, Recommender, API, merv
      * language : foreign language experience needed
      * outdoor : task environment - indoor vs outdoor
      * transportation : transportation resources required
+     * strength : corresponds to physical intensity of the given task
      * task_name : name of the task
      * task_description : description of task
      * timestamp : datetime of task creation
@@ -44,3 +45,13 @@ Tasks, Recommender, API, merv
     * task: foreignkey corresponding to a task
     * similarity: cosine similarity between a task and a user
 
+**Accounts**
+ * ***Models***
+  * User - extends AbstractBaseUser and PermissionsMixin
+   * id: User ID
+   * date_joined: DateTimeField of when the user registered
+   * email: EmailField storing user email
+   * first_name: CharField storing user's first name
+   * last_name: CharField storing the user's last name
+   * password: PBKDF2 encrypted password
+  
