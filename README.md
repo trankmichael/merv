@@ -92,3 +92,18 @@ python manage.py migrate merv
 ```
 python manage.py runserver
 ```
+
+## Digital Ocean
+Web application is deployed using Nginx and Gunicorn using a PostgreSQL.
+The nginx config files are located at /etc/bin/nginx
+
+The Django project is located at /home/django/django_project.
+* to restart Nginx 
+```
+service restart nginx
+```
+* to restart gunicorn
+```
+service restart gunicorn
+```
+
