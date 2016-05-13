@@ -25,5 +25,22 @@ Tasks, Recommender, API, merv
   * **URLS**: /tasks/
     * create, tasklist, taskdetail/\<pk\>, /\<pk\>, rate/\<pk\>
     * <pk> : the primary key of each task
-  
+   
+**Recommender:** handles user-task ratings, and recommendations
+ * **Models**
+  * Rating
+    * id: Rating ID
+    * task: foreignkey corresponding to a task
+    * user: foreignkey corresponding to a user
+    * score: rating for the given task from the user
+  * Recommendation
+    * id: Recommendation ID
+    * task: foreignkey corresponding to a task
+    * user: foreignkey corresponding to a user
+    * predicted_score: predicted rating for the given task for a user
+  * CosineTaskSimilarity - used in content based filtering
+    * id: Cosine similarity ID
+    * user: foreignkey corresponding to a user
+    * task: foreignkey corresponding to a task
+    * similarity: cosine similarity between a task and a user
 
